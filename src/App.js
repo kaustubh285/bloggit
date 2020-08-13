@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
-import ArticleList from "./pages/ArticleList";
+import ArticleListPage from "./pages/ArticleListPage";
 import ArticlePage from "./pages/ArticlePage";
+import PageNotFound from "./pages/PageNotFound";
 import NavBar from "./NavBar";
 
 function App() {
@@ -12,11 +13,14 @@ function App() {
     <Router>
       <div className='container mb-6'>
         <NavBar />
-        <div className='bg-info App mt-2'>
-          <Route path='/' exact component={HomePage} />
-          <Route path='/about' component={AboutPage} />
-          <Route path='/articles-list' exact component={ArticleList} />
-          <Route path='/article' exact component={ArticlePage} />
+        <div className='bg-secondary App mt-2'>
+          <Switch>
+            <Route path='/' exact component={HomePage} />
+            <Route path='/about' component={AboutPage} />
+            <Route path='/articles-list' exact component={ArticleListPage} />
+            <Route path='/article/:name' exact component={ArticlePage} />
+            <Route component={PageNotFound} />
+          </Switch>
         </div>
       </div>
     </Router>

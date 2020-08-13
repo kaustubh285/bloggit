@@ -1,3 +1,15 @@
 .App {
   text-align: center;
 }
+
+.article-content-preview {
+  text-decoration: none;
+}
+
+.article-content-link:hover .article-content-title {
+  text-decoration: underline;
+}
+
+.article-content-link::marker {
+  font-size: 400px;
+}
