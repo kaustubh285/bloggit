@@ -2,6 +2,8 @@ import React, { Fragment, useState, useEffect } from "react";
 import articleContent from "./article-content";
 import ArticleList from "../components/ArticleList";
 import PageNotFound from "./PageNotFound";
+import CommentList from "../components/CommentList";
+import Upvote from "../components/Upvote";
 
 export default function ArticlePage({ match }) {
   const name = match.params.name;
@@ -40,27 +42,26 @@ export default function ArticlePage({ match }) {
   return (
     <Fragment>
       <div className='mt-3 mb-3'>
-        <h1 className='display-4'>
+        <h1 className='display-md-4 display-sm-2'>
           <u>{article.title}</u>
         </h1>
       </div>
 
-      <div className='w-75 mx-auto mt-5 '>
-        <div>
-          <p className='text-right'>
-            This post has {articleInfo.upvotes} upvotes{" "}
-            <i style={{ fontSize: 25 }} className='fa'>
-              {" "}
-              &#xf087;
-            </i>
-          </p>
-        </div>
+      <div className='w-75 mx-auto mt-3 '>
         {article.content.map((paragraph, key) => (
           <p key={key} style={{ fontWeight: "400", textAlign: "justify" }}>
             {paragraph}
           </p>
         ))}
-
+        <div className='text-left'>
+          <Upvote articleInfo={articleInfo} setArticleInfo={setArticleInfo} />
+        </div>
+        <div className='text-left'>
+          <CommentList
+            articleInfo={articleInfo}
+            setArticleInfo={setArticleInfo}
+          />
+        </div>
         <div className='mt-5 text-left'>
           <hr></hr>
           <h4 className='mb-5 text-center'>More like this </h4>
